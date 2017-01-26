@@ -53,6 +53,16 @@ final class CancellableTask[T] private(body: => T, ec: ExecutionContext) {
     * @return `true` if the task was cancelled by this invocation; `false` otherwise
     */
   def cancel(mayInterruptIfRunning: Boolean): Boolean = task.cancel(mayInterruptIfRunning)
+
+  /**
+    * Returns `true` if the task was cancelled before completing; `false` otherwise.
+    *
+    * If this method returns `true`, then [[future]] will fail with a
+    * [[CancellationException]].
+    *
+    * @return `true` if the task was cancelled before completing; `false` otherwise
+    */
+  def isCancelled: Boolean = task.isCancelled
 }
 
 object CancellableTask {
