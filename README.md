@@ -1,2 +1,2 @@
 # cancellable-task
-A task to be run asynchronously, which can be cancelled.
+A cancellable task to be run asynchronously.
