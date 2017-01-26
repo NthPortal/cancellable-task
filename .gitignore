@@ -1,0 +1,17 @@
+# Ignore everything by default
+/*
+
+# Source files
+!/src
+
+# Project configuration files
+!/project
+project/target
+project/project
+!build.sbt
+
+# Assorted
+!.gitignore
+!LICENSE
+!*.md
+!.travis.yml
