@@ -3,19 +3,33 @@ A cancellable task to be run asynchronously.
 
 [![Build Status](https://travis-ci.org/NthPortal/cancellable-task.svg?branch=master)](https://travis-ci.org/NthPortal/cancellable-task)
 [![Coverage Status](https://coveralls.io/repos/github/NthPortal/cancellable-task/badge.svg?branch=master)](https://coveralls.io/github/NthPortal/cancellable-task?branch=master)
+[![Maven Central](https://img.shields.io/maven-central/v/com.nthportal/cancellable-task_2.12.svg)](https://mvnrepository.com/artifact/com.nthportal/cancellable-task_2.12)
 
 ## Add as a Dependency
 
-### SBT
+### SBT (Scala 2.11 and 2.12)
 ```
 "com.nthportal" %% "cancellable-task" % "1.0.0"
 ```
 
 ### Maven
+
+**Scala 2.12**
+
 ```
 <dependency>
   <groupId>com.nthportal</groupId>
   <artifactId>cancellable-task_2.12</artifactId>
+  <version>1.0.0</version>
+</dependency>
+```
+
+**Scala 2.11**
+
+```
+<dependency>
+  <groupId>com.nthportal</groupId>
+  <artifactId>cancellable-task_2.11</artifactId>
   <version>1.0.0</version>
 </dependency>
 ```
