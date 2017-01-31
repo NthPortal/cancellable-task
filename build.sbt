@@ -2,8 +2,8 @@ organization := "com.nthportal"
 name := "cancellable-task"
 description := "A cancellable task to be run asynchronously."
 
-val rawVersion = "1.0.0"
-isSnapshot := false
+val rawVersion = "1.0.1"
+isSnapshot := true
 version := rawVersion + {if (isSnapshot.value) "-SNAPSHOT" else ""}
 
 scalaVersion := "2.12.1"
