@@ -3,7 +3,7 @@ name := "cancellable-task"
 description := "A cancellable task to be run asynchronously."
 
 val rawVersion = "1.0.1"
-isSnapshot := true
+isSnapshot := false
 version := rawVersion + {if (isSnapshot.value) "-SNAPSHOT" else ""}
 
 scalaVersion := "2.12.1"
