@@ -2,14 +2,19 @@ organization := "com.nthportal"
 name := "cancellable-task"
 description := "A cancellable task to be run asynchronously."
 
-val rawVersion = "1.0.0"
+val rawVersion = "1.0.1"
 isSnapshot := true
 version := rawVersion + {if (isSnapshot.value) "-SNAPSHOT" else ""}
 
 scalaVersion := "2.12.1"
+crossScalaVersions := Seq(
+  "2.11.8",
+  "2.12.0",
+  "2.12.1"
+)
 
 libraryDependencies ++= Seq(
-  "org.scalatest" %% "scalatest" % "3.0.1" % Test
+  "org.scalatest" %% "scalatest" % "3.0.+" % Test
 )
 
 publishTo := {

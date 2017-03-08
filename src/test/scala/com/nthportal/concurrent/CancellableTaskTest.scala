@@ -23,7 +23,7 @@ class CancellableTaskTest extends FlatSpec with Matchers {
     val task = CancellableTask {Thread.sleep(5000)}
     task.cancel(true) should be (true)
     task.isCancelled should be(true)
-    Await.result(task.future.failed, Duration.Zero).isInstanceOf[CancellationException] should be (true)
+    Await.result(task.future.failed, Duration.Zero) shouldBe a [CancellationException]
   }
 
   it should "wrap CancellationExceptions" in {
@@ -31,13 +31,13 @@ class CancellableTaskTest extends FlatSpec with Matchers {
 
     val t1 = CancellableTask {throw ex}
     val res1 = Await.result(t1.future.failed, Duration.Inf)
-    res1.isInstanceOf[OtherCancellationException] should be (true)
+    res1 shouldBe an [OtherCancellationException]
     res1.getCause should be theSameInstanceAs ex
 
     val t2 = CancellableTask {throw new OtherCancellationException(ex)}
     val res2 = Await.result(t2.future.failed, Duration.Inf)
-    res2.isInstanceOf[OtherCancellationException] should be (true)
-    res2.getCause.isInstanceOf[OtherCancellationException] should be (true)
+    res2 shouldBe an [OtherCancellationException]
+    res2.getCause shouldBe an [OtherCancellationException]
     res2.getCause.getCause should be theSameInstanceAs ex
   }
 }
