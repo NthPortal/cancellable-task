@@ -31,6 +31,8 @@ package com.nthportal.concurrent
 
 import java.util.concurrent.FutureTask
 
+import _cancellable_task._
+
 import scala.concurrent._
 import scala.util.Try
 
@@ -45,7 +47,7 @@ import scala.util.Try
 final class CancellableTask[T] private(body: => T, ec: ExecutionContext) {
   private val promise = Promise[T]()
 
-  private val task = new FutureTask[T](() => body) {
+  private val task = new FutureTask[T](callable(body)) {
     override def done() = promise complete {
       Try(get) recover {
         case t: ExecutionException => t.getCause match {
