@@ -8,7 +8,8 @@ A cancellable task to be run asynchronously.
 ## Add as a Dependency
 
 ### SBT (Scala 2.11 and 2.12)
-```
+
+```sbt
 "com.nthportal" %% "cancellable-task" % "1.0.0"
 ```
 
@@ -16,7 +17,7 @@ A cancellable task to be run asynchronously.
 
 **Scala 2.12**
 
-```
+```xml
 <dependency>
   <groupId>com.nthportal</groupId>
   <artifactId>cancellable-task_2.12</artifactId>
@@ -26,12 +27,42 @@ A cancellable task to be run asynchronously.
 
 **Scala 2.11**
 
-```
+```xml
 <dependency>
   <groupId>com.nthportal</groupId>
   <artifactId>cancellable-task_2.11</artifactId>
   <version>1.0.0</version>
 </dependency>
+```
+
+## Examples
+
+```scala
+import java.util.concurrent.TimeUnit
+
+import com.nthportal.concurrent.CancellableTask
+import scala.concurrent.ExecutionContext.Implicits.global
+
+// Create a task
+val task = CancellableTask {
+  TimeUnit.MINUTES.sleep(5) // sleep thread for 5 minutes
+  println("Done sleeping!")
+  "the result of the task"
+}
+
+// Get a regular Scala Future with the result
+val future = task.future
+future.onComplete(t => {/* Do something with the Try */})
+
+// Cancel the task, but do not interrupt if already started
+val cancel1 = task.cancel(false)
+val isCancelled1 = task.isCancelled
+assert(cancel1 == isCancelled1)
+
+// Cancel the task, and try to interrupt
+val cancel2 = task.cancel(true)
+val isCancelled2 = task.isCancelled
+assert(isCancelled2 == cancel1 || cancel2) // was it cancelled one of the times?
 ```
 
 ## Authorship
